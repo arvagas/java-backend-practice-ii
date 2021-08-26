@@ -2,11 +2,13 @@ package com.lambdaschool.usermodel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * Main class to start the application.
  */
 @SpringBootApplication
+@EnableJpaAuditing // tells Spring to have Entity listeners work, default is not running
 public class UserModelApplication
 {
 
