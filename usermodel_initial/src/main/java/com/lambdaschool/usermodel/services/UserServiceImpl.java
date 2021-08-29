@@ -2,6 +2,7 @@ package com.lambdaschool.usermodel.services;
 
 import com.lambdaschool.usermodel.models.Role;
 import com.lambdaschool.usermodel.models.User;
+import com.lambdaschool.usermodel.models.UserRoles;
 import com.lambdaschool.usermodel.models.Useremail;
 import com.lambdaschool.usermodel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,12 +103,12 @@ public class UserServiceImpl
 
         newUser.getRoles()
                 .clear();
-        for (Role r : user.getRoles())
+        for (UserRoles r : user.getRoles())
         {
-            Role newRole = roleService.findRoleById(r.getRoleid());
+            Role newRole = roleService.findRoleById(r.getRole().getRoleid());
 
             newUser.getRoles()
-                    .add(newRole);
+                    .add(new UserRoles(newUser, newRole));
         }
 
         newUser.getUseremails()
@@ -152,12 +153,12 @@ public class UserServiceImpl
         {
             currentUser.getRoles()
                     .clear();
-            for (Role r : user.getRoles())
+            for (UserRoles r : user.getRoles())
             {
-                Role newRole = roleService.findRoleById(r.getRoleid());
+                Role newRole = roleService.findRoleById(r.getRole().getRoleid());
 
                 currentUser.getRoles()
-                        .add(newRole);
+                        .add(new UserRoles(currentUser, newRole));
             }
         }
 
