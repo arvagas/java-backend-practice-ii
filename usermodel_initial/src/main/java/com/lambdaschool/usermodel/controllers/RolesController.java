@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -120,5 +121,12 @@ public class RolesController
         return new ResponseEntity<>(null,
                                     responseHeaders,
                                     HttpStatus.CREATED);
+    }
+
+    @PatchMapping(value = "/role/{roleid}", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<?> updateRoleName(@PathVariable long roleid, @RequestBody Role role) {
+            Role updateRole = roleService.updateRoleName(roleid, role);
+
+            return new ResponseEntity<>(updateRole, HttpStatus.OK);
     }
 }

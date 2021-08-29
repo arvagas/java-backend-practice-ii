@@ -47,4 +47,6 @@ public interface RoleService
     Role findByName(String name);
 
     public void deleteAll();
+
+    Role updateRoleName(long roleid, Role role);
 }

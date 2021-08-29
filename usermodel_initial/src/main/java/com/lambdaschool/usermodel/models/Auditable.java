@@ -29,4 +29,20 @@ public abstract class Auditable { // should never have an obj that is auditable,
   @LastModifiedDate
   @Temporal(TemporalType.TIMESTAMP)
   protected Date lastmodifieddate;
+
+  // public String getCreatedBy() {
+  //   return createdby;
+  // }
+
+  // public Date getCreateddate() {
+  //   return createddate;
+  // }
+
+  // public String getLastmodifiedby() {
+  //   return lastmodifiedby;
+  // }
+
+  // public Date getLastmodifieddate() {
+  //   return lastmodifieddate;
+  // }
 }

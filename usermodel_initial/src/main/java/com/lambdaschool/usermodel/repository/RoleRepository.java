@@ -1,6 +1,9 @@
 package com.lambdaschool.usermodel.repository;
 
 import com.lambdaschool.usermodel.models.Role;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -16,4 +19,10 @@ public interface RoleRepository
      * @return the first role matching the given name using a case insensitive search
      */
     Role findByNameIgnoreCase(String name);
+
+    @Modifying
+    @Query(value = "UPDATE roles SET name = :rname, lastmodifiedby = :uname lastmodifieddate = CURRENT_TIMESTAMP " +
+                    "WHERE roleid = roleid",
+                    nativeQuery = true)
+    void updateRoleName(long roleid, String rname, String uname);
 }

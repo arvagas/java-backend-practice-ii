@@ -33,6 +33,9 @@ public class RoleServiceImpl
     @Autowired
     UserRepository userrepos;
 
+    @Autowired
+    UserAuditing userAuditing;
+
     @Override
     public List<Role> findAll()
     {
@@ -85,7 +88,16 @@ public class RoleServiceImpl
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void deleteAll()
-    {
+    { 
         rolerepos.deleteAll();
+    }
+
+    @Override
+    public Role updateRoleName(long roleid, Role role) {
+        rolerepos.findById(roleid)
+            .orElseThrow(() -> new EntityNotFoundException("Role " + roleid + " not found!"));
+        rolerepos.updateRoleName(roleid, role.getName(), userAuditing.getCurrentAuditor().get());
+        
+        return rolerepos.findById(roleid).get();
     }
 }
