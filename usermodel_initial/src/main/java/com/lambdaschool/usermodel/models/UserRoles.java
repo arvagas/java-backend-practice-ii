@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "userroles")
 @IdClass(UserRoleId.class)
-public class UserRoles implements Serializable {
+public class UserRoles extends Auditable implements Serializable {
   @Id
   @ManyToOne
   @JoinColumn(name = "userid")
